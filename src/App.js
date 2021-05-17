@@ -20,8 +20,10 @@ function App() {
   }, []);
   return (
     <div style = {{ textAlign: 'center'}}>
-    <h1> Weather App </h1>
-    {JSON.stringify(weather)}
+      {console.log(API_KEY)}
+      {console.log("hI")}
+      <h1> Weather App </h1>
+      {JSON.stringify(weather)}
     </div>
   );
 }
