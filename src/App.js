@@ -1,8 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import "./keys";
+import API_KEY from './keys';
 require('dotenv').config()
 
 function App() {
+  
   return (
     <div className="App">
       <header className="App-header">
