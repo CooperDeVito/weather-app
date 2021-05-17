@@ -1,28 +1,27 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import "./keys";
 import API_KEY from './keys';
+
 require('dotenv').config()
 
 function App() {
-  
+  const [weather, setWeather] = useState(null);
+  useEffect(() => { 
+    const url = new URL("http://api.openweathermap.org/data/2.5/weather");
+    url.searchParams.append("appid", API_KEY); //insert appid so they take out request
+    url.searchParams.append("zipcode", 22943); //hardcoded zipcode
+    fetch(url).then(resp=>  {
+      return resp.json();
+    }).then(obj=> {
+      setWeather(obj);
+    });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style = {{ textAlign: 'center'}}>
+    <h1> Weather App </h1>
+    {JSON.stringify(weather)}
     </div>
   );
 }
