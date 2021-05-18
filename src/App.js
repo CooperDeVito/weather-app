@@ -10,10 +10,13 @@ function App() {
   useEffect(() => { 
     const url = new URL("https://api.openweathermap.org/data/2.5/weather");
     url.searchParams.append("appid", API_KEY); //insert appid so they take our request
-    url.searchParams.append("zipcode", 22903); //hardcoded zipcode
-    fetch(url).then(resp=>  {
+    url.searchParams.append("zip", 22943); //hardcoded zipcode
+    url.searchParams.append("units", "imperial");
+    fetch(url)
+    .then((resp) => {
       return resp.json();
-    }).then(obj=> {
+    })
+    .then((obj) => { 
       setWeather(obj);
     });
   }, []);
@@ -21,9 +24,9 @@ function App() {
     <div style = {{ textAlign: 'center'}}>
       {console.log(API_KEY)}
       <h1> Weather App </h1>
-      {JSON.stringify(weather)}
+      <pre> {JSON.stringify(weather, undefined, 4)} </pre>
     </div>
   );
-}
+  }
 
 export default App;
